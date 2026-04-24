@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Beat The Heat Safety Quiz</title>
+<style>
+:root{--text:#1f2937;--muted:#6b7280;--accent:#d97706}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at top, rgba(255,224,130,.95) 0%, rgba(255,193,7,.38) 18%, rgba(245,247,251,1) 52%, rgba(239,246,255,1) 100%)}.wrap{max-width:100%;margin:0 auto;padding:10px}.card{background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,248,230,.98));border-radius:16px;box-shadow:0 14px 34px rgba(194,65,12,.18);padding:14px;border:1px solid rgba(245,158,11,.18)}.hero{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}.badge-pill{display:inline-block;background:linear-gradient(90deg,#fed7aa,#fde68a);color:#92400e;padding:8px 12px;border-radius:999px;font-size:14px;font-weight:bold;box-shadow:0 6px 14px rgba(217,119,6,.15)}h1{margin:8px 0 4px;font-size:clamp(24px,6vw,34px);color:#9a3412;text-shadow:0 1px 0 rgba(255,255,255,.6)}p{margin:6px 0;color:var(--muted);line-height:1.5}.hero-badge{display:grid;place-items:center;padding:10px 0 4px}.hero-badge img{max-width:100%;width:100%;height:auto;border-radius:16px;box-shadow:0 12px 28px rgba(194,65,12,.16)}.q{border:1px solid rgba(245,158,11,.22);border-radius:14px;padding:12px;margin:12px 0;background:linear-gradient(180deg,#ffffff,#fff7ed)}.q h3{margin:0 0 10px;font-size:17px;line-height:1.4}label{display:block;margin:10px 0;line-height:1.4;font-size:16px}input[type=radio]{transform:scale(1.1);margin-right:10px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}button,a.btn{display:inline-block;background:linear-gradient(90deg,#ea580c,#f59e0b);color:#fff;border:none;padding:15px 18px;border-radius:12px;font-size:17px;cursor:pointer;text-decoration:none;text-align:center;min-width:0;width:100%;box-shadow:0 8px 16px rgba(217,119,6,.24)}#result{margin-top:18px;font-weight:bold;font-size:18px}#badgeBox{display:none;margin-top:18px;padding:16px;border:2px dashed #f59e0b;border-radius:16px;background:#fffaf0;text-align:center}#badgeBox img{max-width:min(360px,85vw);width:100%;height:auto;display:block;margin:0 auto 10px}#scoreLine{font-size:18px;margin-bottom:8px}.small{font-size:14px;color:var(--muted)}@media (max-width:600px){.card{padding:12px}.q{padding:12px}label{font-size:16px}.actions{gap:10px}button,a.btn{width:100%;min-width:0}}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div id="screen1">
+      <div class="hero">
+        <div>
+          <div class="badge-pill">Beat The Heat Champion Quiz</div>
+          <h1>Participant Details</h1>
+          <p>Enter your details first, then continue to the quiz on the second page.</p>
+        </div>
+        <p class="small">Step 1 of 2</p>
+      </div>
+      <div class="q">
+        <label>Circle<br><input type="text" id="empCircle" placeholder="Enter circle name" style="width:100%;padding:12px;margin-top:8px;border:1px solid #d1d5db;border-radius:10px;font-size:16px"></label>
+        <label>Name of employee<br><input type="text" id="empName" placeholder="Enter your name" style="width:100%;padding:12px;margin-top:8px;border:1px solid #d1d5db;border-radius:10px;font-size:16px"></label>
+        <label>Employee ID number<br><input type="text" id="empId" placeholder="Enter employee ID number" style="width:100%;padding:12px;margin-top:8px;border:1px solid #d1d5db;border-radius:10px;font-size:16px"></label>
+        <label>Department<br><input type="text" id="empDept" placeholder="Enter department" style="width:100%;padding:12px;margin-top:8px;border:1px solid #d1d5db;border-radius:10px;font-size:16px"></label>
+      </div>
+      <div class="actions"><button type="button" onclick="goQuiz()">Next: Start Quiz</button></div>
+    </div>
+    <div id="screen2" style="display:none">
+      <div class="hero">
+        <div>
+          <div class="badge-pill">Beat The Heat Champion Quiz</div>
+          <h1>Beat The Heat Safety Quiz</h1>
+          <p>Answer all questions, then your badge will appear on the next page.</p>
+        </div>
+        <p class="small">Step 2 of 2</p>
+      </div>
+      
+      <form id="quizForm"></form>
+      <div class="actions"><button type="button" onclick="submitQuiz()">Submit Quiz</button></div>
+      <div id="result"></div>
+      <div id="badgeBox"><img src="https://i.postimg.cc/cKjYrVDn/IMG-20260424-153847-166.jpg" alt="IMG-20260424-153847-166"></a>"
+ /><div id="scoreLine"></div><div class="small">Congratulations — you have completed the Beat the Heat Safety Quiz.</div></div>
+    </div>
+  </div>
+</div>
+<script>
+const questions=[['What is a key sign of heat exhaustion?', ['Heavy sweating and dizziness','No pulse','Broken bone','Blurred hearing'], 0],['What should you do every 20 minutes in hot weather?', ['Take a nap','Drink water','Skip meals','Wear darker clothes'], 1],['Heat stroke is a:', ['Minor discomfort','Medical emergency','Normal body reaction','Skin allergy'], 1],['What is the best first action if someone collapses from heat?', ['Leave them alone','Take to shade and cool rapidly','Give alcohol','Ask them to walk'], 1],['Which hours should heavy outdoor work be avoided?', ['1 PM to 3 PM','6 AM to 8 AM','9 PM to 11 PM','Any time'], 0],['Which drink is helpful during heat exposure?', ['ORS','Energy drink only','Alcohol','Soda only'], 0],['What is the correct response if a person is unconscious?', ['Force water','Do not give fluids and call emergency help','Wait and watch','Make them run'], 1],['What should workers use for buddy watch?', ['A helmet sticker','A companion system','A loud whistle only','No support needed'], 1],['Which symptom needs urgent action?', ['Fainting or confusion','Feeling hungry','Sneezing','Itchy eyes'], 0],['What is recommended during roof or tower work?', ['3-point contact and early start','Late afternoon work','Dark clothing','Skipping water'], 0],['Which food helps hydration?', ['Watermelon','Chips','Cake','Fried snacks'], 0],['What should supervisors check before field work?', ['Weather and shade points','Only attendance','Lunch menu','Vehicle color'], 0],['What should not be given to a heat stroke victim?', ['Alcohol or caffeine','Shade','Cooling cloth','Emergency call'], 0],['What should you do after completing the quiz?', ['Drink water','Go back to work immediately','Skip hydration','Remove the badge'], 0],['What badge is displayed after completion?', ['Beat the Heat Champion','Safety Captain','Heat Warrior Pro','Field Hero'], 0]];
+const form=document.getElementById('quizForm');
+questions.forEach((q,i)=>{const div=document.createElement('div');div.className='q';div.innerHTML=`<h3>${i+1}. ${q[0]}</h3>`+q[1].map((opt,j)=>`<label><input type='radio' name='q${i}' value='${j}'> ${opt}</label>`).join('');form.appendChild(div)});
+function goQuiz(){const c=document.getElementById('empCircle').value.trim();const n=document.getElementById('empName').value.trim();const id=document.getElementById('empId').value.trim();const d=document.getElementById('empDept').value.trim();if(!c||!n||!id||!d){alert('Please enter circle, name, employee ID number, and department before continuing.');return}document.getElementById('screen1').style.display='none';document.getElementById('screen2').style.display='block';window.scrollTo({top:0,behavior:'smooth'})}
+function submitQuiz(){const answered=questions.every((q,i)=>document.querySelector(`input[name='q${i}']:checked`));if(!answered){alert('Please answer all questions before submitting.');return}let score=0;questions.forEach((q,i)=>{const checked=document.querySelector(`input[name='q${i}']:checked`);if(checked&&Number(checked.value)===q[2])score++});const pct=Math.round(score/questions.length*100);const c=document.getElementById('empCircle').value.trim();const n=document.getElementById('empName').value.trim();const id=document.getElementById('empId').value.trim();const d=document.getElementById('empDept').value.trim();document.getElementById('result').textContent=`${n} | ${c} | ${id} | ${d}`;document.getElementById('scoreLine').textContent=`Score: ${score}/${questions.length} (${pct}%) — Badge unlocked: Beat the Heat Champion`;document.getElementById('badgeBox').style.display='block';document.getElementById('badgeBox').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>
